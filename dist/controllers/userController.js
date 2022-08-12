@@ -83,7 +83,7 @@ const UserController = {
                 if (islogged) {
                     const secretKey = process.env.SECRET_KEY;
                     if (secretKey) {
-                        const token = jsonwebtoken_1.default.sign({ user: islogged }, secretKey, { expiresIn: "3200s" });
+                        const token = jsonwebtoken_1.default.sign({ user: islogged }, secretKey, { expiresIn: "1d" });
                         return res.json({ token });
                     }
                     else {
