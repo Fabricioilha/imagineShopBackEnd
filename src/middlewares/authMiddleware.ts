@@ -18,7 +18,6 @@ export const authMiddleware = async (req:Request, res: Response, next: NextFunct
                         const payload = decodedToken as tokenPayload
                         const user = await UserService.findByEmail(payload.user.email)
                         if(user){
-                            console.log("passou em todas as verificações do authMiddleware")
                             next()
                         }
                     }
