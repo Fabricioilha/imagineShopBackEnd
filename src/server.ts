@@ -6,6 +6,7 @@ import Routes from './Routes/Routes'
 const app = express()
 const PORT = process.env.PORT
 app.use(json())
+
 dbConect()
 
 app.use(Routes)
