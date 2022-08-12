@@ -6,6 +6,11 @@ import { authMiddleware } from "../middlewares/authMiddleware";
 const Routes = Router()
 
 
+// Home
+Routes.get("/",(req, res)=>{
+    res.send("BACK END WORKS")
+})
+
 // Login
 Routes.post("/login", UserController.login)
 
