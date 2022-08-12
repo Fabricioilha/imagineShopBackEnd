@@ -56,7 +56,7 @@ const UserController = {
             if(islogged){
                 const secretKey = process.env.SECRET_KEY
                 if(secretKey){
-                    const token = jwt.sign({user: islogged}, secretKey, {expiresIn: "3200s"})
+                    const token = jwt.sign({user: islogged}, secretKey, {expiresIn: "1d"})
                     return res.json({token})
                 }else{
                     return res.json({msg: "Erro no token"})
