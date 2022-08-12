@@ -29,12 +29,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const dbConfig_1 = require("./database/dbConfig");
 require("dotenv/config");
-const routes_1 = __importDefault(require("./routes"));
+const Routes_1 = __importDefault(require("./Routes/Routes"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT;
 app.use((0, express_1.json)());
 (0, dbConfig_1.dbConect)();
-app.use(routes_1.default);
+app.use(Routes_1.default);
 app.use((req, res) => {
     res.json({ msg: "Endpoint não encontrado" });
 });

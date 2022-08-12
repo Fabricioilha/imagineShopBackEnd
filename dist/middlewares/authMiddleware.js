@@ -30,7 +30,6 @@ const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
                         const payload = decodedToken;
                         const user = yield userService_1.UserService.findByEmail(payload.user.email);
                         if (user) {
-                            console.log("passou em todas as verificações do authMiddleware");
                             next();
                         }
                     }
