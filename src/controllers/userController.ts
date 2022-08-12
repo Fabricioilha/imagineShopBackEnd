@@ -3,6 +3,7 @@ import { UserService } from '../services/userService'
 import { updateUserType } from '../types/types'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
+
 const UserController = {
     async add(req: Request, res: Response){
         try {
@@ -12,7 +13,6 @@ const UserController = {
             return res.json(error)   
         }
     },
-
     async readById(req: Request, res: Response){
         try {
             const user = await UserService.readById(req.params.id)
@@ -21,7 +21,6 @@ const UserController = {
             return res.json(error)
         }
     },
-
     async readAll(req: Request, res: Response){
         try {
             const allUsers = await UserService.readAll()
@@ -30,7 +29,6 @@ const UserController = {
             return res.json(error)
         }
     },
-
     async updateById (req: Request, res: Response){
         try {
             const data:updateUserType = {
@@ -43,7 +41,6 @@ const UserController = {
             return res.json(error)
         }
     },
-
     async deleteById (req: Request, res: Response){
         try {
             const deleted = await UserService.delete(req.params.id)
@@ -52,7 +49,6 @@ const UserController = {
             res.json(error)
         }
     },
-
     async login (req: Request, res: Response){
         try {
             const {email, password} = req.body

@@ -31,3 +31,13 @@ export interface tokenPayload {
     iat:number,
     exp:number
 }
+
+export type productType = {
+    id?: string,
+    name?: string,
+    description?: string,
+    price?: number,
+    summary?: string,
+    stock?: number,
+    filename?: string
+}
