@@ -14,7 +14,7 @@ app.use(Routes)
 app.use("/uploads", express.static("uploads"))
 
 app.use((req: Request, res: Response)=>{
-    res.json({msg: "Endpoint não encontrado"})
+    res.json({msg: "Endpoint não encontrado."})
 })
 
 app.listen(PORT,()=>{

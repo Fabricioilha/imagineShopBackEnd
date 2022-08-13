@@ -38,7 +38,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.use(Routes_1.default);
 app.use("/uploads", express_1.default.static("uploads"));
 app.use((req, res) => {
-    res.json({ msg: "Endpoint não encontrado" });
+    res.json({ msg: "Endpoint não encontrado." });
 });
 app.listen(PORT, () => {
     console.log(`Server runing at http://localhost:${PORT}`);
