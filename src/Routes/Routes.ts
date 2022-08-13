@@ -2,6 +2,7 @@ import { Router } from "express";
 import ProductController from "../controllers/productController";
 import UserController from "../controllers/userController";
 import { authMiddleware } from "../middlewares/authMiddleware";
+import { uploadMiddleware } from "../middlewares/uploadImage";
 
 const Routes = Router()
 
@@ -25,6 +26,6 @@ Routes.delete("/user/:id",authMiddleware, UserController.deleteById)
 // Rotas dos produtos
 Routes.get("/products", ProductController.readAll)
 Routes.get("/product/:id", ProductController.readById)
-Routes.post("/product", authMiddleware, ProductController.add)
+Routes.post("/product",authMiddleware, uploadMiddleware.single("image"), ProductController.add)
 
 export default Routes

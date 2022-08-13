@@ -5,8 +5,14 @@ import { ProductService } from "../services/productService"
 const ProductController = {
     async add(req: Request, res: Response){
         try {
-            await ProductService.add(req.body)
-            return res.json({msg:"Cadastrado com sucesso"})
+            const filename = req.file?.filename
+            if(filename){
+                const {name, description, price, summary, stock} = req.body
+                await ProductService.add({name, description, price, summary, stock, filename})
+                return res.json({msg:"Cadastrado com sucesso"})
+            }else{
+                return res.json({err:"Upload não concluiido"})
+            }
         } catch (error) {
             return res.json(error)   
         }

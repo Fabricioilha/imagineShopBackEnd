@@ -34,7 +34,9 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT;
 app.use((0, express_1.json)());
 (0, dbConfig_1.dbConect)();
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use(Routes_1.default);
+app.use("/uploads", express_1.default.static("uploads"));
 app.use((req, res) => {
     res.json({ msg: "Endpoint não encontrado" });
 });

@@ -7,6 +7,7 @@ const express_1 = require("express");
 const productController_1 = __importDefault(require("../controllers/productController"));
 const userController_1 = __importDefault(require("../controllers/userController"));
 const authMiddleware_1 = require("../middlewares/authMiddleware");
+const uploadImage_1 = require("../middlewares/uploadImage");
 const Routes = (0, express_1.Router)();
 // Home
 Routes.get("/", (req, res) => {
@@ -23,5 +24,5 @@ Routes.delete("/user/:id", authMiddleware_1.authMiddleware, userController_1.def
 // Rotas dos produtos
 Routes.get("/products", productController_1.default.readAll);
 Routes.get("/product/:id", productController_1.default.readById);
-Routes.post("/product", authMiddleware_1.authMiddleware, productController_1.default.add);
+Routes.post("/product", authMiddleware_1.authMiddleware, uploadImage_1.uploadMiddleware.single("image"), productController_1.default.add);
 exports.default = Routes;

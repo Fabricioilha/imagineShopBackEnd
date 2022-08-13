@@ -13,10 +13,18 @@ require("dotenv/config");
 const productService_1 = require("../services/productService");
 const ProductController = {
     add(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield productService_1.ProductService.add(req.body);
-                return res.json({ msg: "Cadastrado com sucesso" });
+                const filename = (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename;
+                if (filename) {
+                    const { name, description, price, summary, stock } = req.body;
+                    yield productService_1.ProductService.add({ name, description, price, summary, stock, filename });
+                    return res.json({ msg: "Cadastrado com sucesso" });
+                }
+                else {
+                    return res.json({ err: "Upload não concluiido" });
+                }
             }
             catch (error) {
                 return res.json(error);
