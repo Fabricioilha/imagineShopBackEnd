@@ -11,7 +11,7 @@ dbConect()
 
 app.use(express.urlencoded({extended: true}))
 app.use(Routes)
-app.use("/uploads", express.static("uploads"))
+app.use("/uploads", express.static("uploads")) 
 
 app.use((req: Request, res: Response)=>{
     res.json({msg: "Endpoint não encontrado."})

@@ -65,13 +65,16 @@ const ProductController = {
     //         return res.json(error)
     //     }
     // },
-    // async deleteById (req: Request, res: Response){
-    //     try {
-    //         const deleted = await UserService.delete(req.params.id)
-    //         return res.json(deleted)
-    //     } catch (error) {
-    //         res.json(error)
-    //     }
-    // }
+    deleteById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield productService_1.ProductService.deleteOne(req.params.id);
+                return res.json({ msg: "Exluido com sucesso" });
+            }
+            catch (error) {
+                res.json(error);
+            }
+        });
+    }
 };
 exports.default = ProductController;

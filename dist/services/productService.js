@@ -37,5 +37,13 @@ exports.ProductService = {
         catch (error) {
             return error;
         }
+    }),
+    deleteOne: (id) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            return yield productSchema_1.ProductModel.deleteOne({ _id: id });
+        }
+        catch (error) {
+            return error;
+        }
     })
 };

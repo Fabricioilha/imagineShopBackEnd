@@ -25,5 +25,12 @@ export const ProductService = {
         } catch (error) {
             return error
         }
+    },
+    deleteOne: async (id:string)=>{
+        try {
+            return await ProductModel.deleteOne({_id: id})
+        } catch (error) {
+            return error
+        }
     }
 }

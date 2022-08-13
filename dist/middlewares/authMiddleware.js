@@ -17,25 +17,36 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userService_1 = require("../services/userService");
 const authMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const authorization = req.headers.authorization;
-    const token = authorization ? authorization.split(" ")[1] : undefined;
-    if (token) {
-        const secretKey = process.env.SECRET_KEY;
-        if (secretKey) {
-            jsonwebtoken_1.default.verify(token, secretKey, { ignoreExpiration: false }, (err, decodedToken) => __awaiter(void 0, void 0, void 0, function* () {
-                if (err) {
-                    return res.status(401).json({ msg: "Não autorizado" });
-                }
-                else {
-                    if (decodedToken) {
-                        const payload = decodedToken;
-                        const user = yield userService_1.UserService.findByEmail(payload.user.email);
-                        if (user) {
-                            next();
+    if (authorization) {
+        const token = authorization ? authorization.split(" ")[1] : undefined;
+        if (token) {
+            const secretKey = process.env.SECRET_KEY;
+            if (secretKey) {
+                jsonwebtoken_1.default.verify(token, secretKey, { ignoreExpiration: false }, (err, decodedToken) => __awaiter(void 0, void 0, void 0, function* () {
+                    if (err) {
+                        return res.status(401).json({ msg: "Não autorizado, ou token expirado" });
+                    }
+                    else {
+                        if (decodedToken) {
+                            const payload = decodedToken;
+                            const user = yield userService_1.UserService.findByEmail(payload.user.email);
+                            if (user) {
+                                next();
+                            }
                         }
                     }
-                }
-            }));
+                }));
+            }
+            else {
+                return res.status(401).json({ msg: "Problema com a chave secreta" });
+            }
         }
+        else {
+            return res.status(401).json({ msg: "Token recebido no headers mas houve algum problema para configurá-lo" });
+        }
+    }
+    else {
+        return res.status(401).json({ msg: "Nao encontrou token no headers da página" });
     }
 });
 exports.authMiddleware = authMiddleware;

@@ -1,6 +1,7 @@
 import {Request , Response} from 'express'
 import 'dotenv/config'
 import { ProductService } from "../services/productService"
+import { UserService } from '../services/userService'
 
 const ProductController = {
     async add(req: Request, res: Response){
@@ -45,13 +46,13 @@ const ProductController = {
     //         return res.json(error)
     //     }
     // },
-    // async deleteById (req: Request, res: Response){
-    //     try {
-    //         const deleted = await UserService.delete(req.params.id)
-    //         return res.json(deleted)
-    //     } catch (error) {
-    //         res.json(error)
-    //     }
-    // }
+    async deleteById (req: Request, res: Response){
+        try {
+            await ProductService.deleteOne(req.params.id)
+            return res.json({msg:"Exluido com sucesso"})
+        } catch (error) {
+            res.json(error)
+        }
+    }
 }
 export default ProductController
