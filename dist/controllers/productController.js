@@ -53,18 +53,6 @@ const ProductController = {
             }
         });
     },
-    // async updateById (req: Request, res: Response){
-    //     try {
-    //         const data:updateUserType = {
-    //             id: req.params.id,
-    //             body: req.body
-    //         }
-    //         const updated = await UserService.update(data)
-    //         return res.json(updated)
-    //     } catch (error) {
-    //         return res.json(error)
-    //     }
-    // },
     deleteById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -74,6 +62,15 @@ const ProductController = {
             catch (error) {
                 res.json(error);
             }
+        });
+    },
+    sellProduct(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { products } = req.body;
+            for (const product of products) {
+                yield productService_1.ProductService.sellProduct(product);
+            }
+            return res.status(200).json({ message: 'success' });
         });
     }
 };

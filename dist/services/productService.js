@@ -45,5 +45,13 @@ exports.ProductService = {
         catch (error) {
             return error;
         }
+    }),
+    sellProduct: (products) => __awaiter(void 0, void 0, void 0, function* () {
+        const product = yield exports.ProductService.readById(products._id);
+        if (product && product.stock > 0) {
+            product.stock = product.stock - 1;
+            return yield productSchema_1.ProductModel.updateOne({ _id: (products._id) }, product);
+        }
+        return null;
     })
 };

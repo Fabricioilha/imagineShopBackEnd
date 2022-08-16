@@ -26,4 +26,5 @@ Routes.get("/products", productController_1.default.readAll);
 Routes.get("/product/:id", productController_1.default.readById);
 Routes.post("/product", authMiddleware_1.authMiddleware, uploadImage_1.uploadMiddleware.single("image"), productController_1.default.add);
 Routes.delete("/product/:id", authMiddleware_1.authMiddleware, productController_1.default.deleteById);
+Routes.post("/products/sell", authMiddleware_1.authMiddleware, productController_1.default.sellProduct);
 exports.default = Routes;

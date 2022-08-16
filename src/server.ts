@@ -10,6 +10,7 @@ const app = express()
 const PORT = process.env.PORT
 
 app.use(json())
+
 app.use(cors())
 
 dbConect()
