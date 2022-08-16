@@ -28,5 +28,6 @@ Routes.get("/products", ProductController.readAll)
 Routes.get("/product/:id", ProductController.readById)
 Routes.post("/product",authMiddleware, uploadMiddleware.single("image"), ProductController.add)
 Routes.delete("/product/:id", authMiddleware, ProductController.deleteById)
+Routes.post("/products/sell", authMiddleware, ProductController.sellProduct)
 
 export default Routes

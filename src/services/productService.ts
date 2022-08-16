@@ -7,10 +7,10 @@ export const ProductService = {
         try {
             await ProductModel.create(product)
         } catch (error) {
-            return error           
+            return error
         }
     },
-    readById: async (id: string) => {        
+    readById: async (id: string) => {
         try {
             const user = await ProductModel.findById(id)
             return user
@@ -26,11 +26,19 @@ export const ProductService = {
             return error
         }
     },
-    deleteOne: async (id:string)=>{
+    deleteOne: async (id: string) => {
         try {
-            return await ProductModel.deleteOne({_id: id})
+            return await ProductModel.deleteOne({ _id: id })
         } catch (error) {
             return error
         }
+    },
+    sellProduct: async (products: any)=>{
+        const product: any = await ProductService.readById(products._id);
+        if (product && product.stock > 0) {
+            product.stock = product.stock - 1;
+            return await ProductModel.updateOne({ _id: (products._id) }, product);
+        }
+        return null;
     }
 }

@@ -2,10 +2,15 @@ import express, { json, Request, Response } from 'express'
 import { dbConect } from './database/dbConfig'
 import 'dotenv/config'
 import Routes from './Routes/Routes'
+import cors from 'cors'
+
 
 const app = express()
+
 const PORT = process.env.PORT
+
 app.use(json())
+app.use(cors())
 
 dbConect()
 
