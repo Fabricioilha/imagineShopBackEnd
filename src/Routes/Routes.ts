@@ -6,7 +6,6 @@ import { uploadMiddleware } from "../middlewares/uploadImage";
 
 const Routes = Router()
 
-
 // Home
 Routes.get("/",(req, res)=>{
     res.send("BACK END WORKS")
